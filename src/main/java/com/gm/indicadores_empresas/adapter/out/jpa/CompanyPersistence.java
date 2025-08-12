@@ -4,9 +4,10 @@ import com.gm.indicadores_empresas.adapter.mapper.IndicatorsMapper;
 import com.gm.indicadores_empresas.adapter.repository.IndicatorsRepository;
 import com.gm.indicadores_empresas.application.domain.Indicators;
 import com.gm.indicadores_empresas.application.port.out.SearchIndicatorsPort;
-import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CompanyPersistence implements SearchIndicatorsPort {
@@ -22,10 +23,10 @@ public class CompanyPersistence implements SearchIndicatorsPort {
     }
 
     @Override
-    public Optional<Indicators> searchIndicators(Indicators indicators) {
+    public List<Indicators> searchIndicators(Indicators indicators) {
         return indicatorsRepository.findAllByCompany_Ticker(indicators.getCompany().getTicker())
                 .stream()
-                .findFirst()
-                .map(indicadoresMapper::toModel);
+                .map(indicadoresMapper::toModel)
+                .toList();
     }
 }

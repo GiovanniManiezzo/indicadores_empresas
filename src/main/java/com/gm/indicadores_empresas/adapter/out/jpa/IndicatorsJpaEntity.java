@@ -1,6 +1,5 @@
 package com.gm.indicadores_empresas.adapter.out.jpa;
 
-import com.gm.indicadores_empresas.application.domain.Company;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -20,6 +19,9 @@ public class IndicatorsJpaEntity {
     @Id
     @Column(name = "quarter")
     private LocalDate quarter;
+
+    @Column(name = "cd_cvm", nullable = false)
+    private Long cdCvm;
 
     @Column(name = "cost_of_goods_sold")
     private BigDecimal costOfGoodsSold;
@@ -48,18 +50,13 @@ public class IndicatorsJpaEntity {
     @Column(name = "financial_result")
     private BigDecimal financialResult;
 
-    @Column(name = "net_income_operation")
+    @Column(name = "net_income_operations")
     private BigDecimal netIncomeOperation;
 
     @Column(name = "hmanut")
     private LocalDateTime hmanut;
 
     public IndicatorsJpaEntity() {}
-
-    public IndicatorsJpaEntity(CompanyJpaEntity company){
-        this.company = company;
-        this.quarter = quarter;
-    }
 
     public BigDecimal getCostOfGoodsSold() {
         return costOfGoodsSold;
@@ -163,5 +160,13 @@ public class IndicatorsJpaEntity {
 
     public void setCompany(CompanyJpaEntity company) {
         this.company = company;
+    }
+
+    public Long getCdCvm() {
+        return cdCvm;
+    }
+
+    public void setCdCvm(Long cdCvm) {
+        this.cdCvm = cdCvm;
     }
 }

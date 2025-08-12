@@ -1,8 +1,8 @@
 package com.gm.indicadores_empresas.application.port.out;
 
-import com.gm.indicadores_empresas.application.domain.Company;
 import com.gm.indicadores_empresas.application.domain.Indicators;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface SearchIndicatorsPort {
@@ -13,5 +13,5 @@ public interface SearchIndicatorsPort {
      * @param company the criteria to search indicators
      * @return a list of indicators that match the search criteria
      */
-    Optional<Indicators> searchIndicators(Indicators indicators);
+    List<Indicators> searchIndicators(Indicators indicators);
 }

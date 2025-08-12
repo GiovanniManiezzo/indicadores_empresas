@@ -6,9 +6,10 @@ import com.gm.indicadores_empresas.application.domain.Indicators;
 import com.gm.indicadores_empresas.application.exceptions.IndicatorsByCompanyExecption;
 import com.gm.indicadores_empresas.application.port.in.CompanyUseCase;
 import com.gm.indicadores_empresas.application.port.out.SearchIndicatorsPort;
-import com.gm.indicadores_empresas.application.domain.Indicators;
+import com.gm.indicadores_empresas.adapter.mapper.IndicatorsMapper;
 
 import java.util.Optional;
+import java.util.Collections;
 import java.util.List;
 
 public class CompanyService implements CompanyUseCase {
@@ -20,17 +21,17 @@ public class CompanyService implements CompanyUseCase {
     }
 
     @Override
-    public List<IndicatorsDTO> getIndicatorsByCompany(String ticker) throws IndicatorsByCompanyExecption {
+    public List<Indicators> getIndicatorsByCompany(String ticker) throws IndicatorsByCompanyExecption {
 
         Company company = new Company("", ticker);
         Indicators indicatorsFilter = new Indicators(company);
-        Optional<Indicators> indicators = searchIndicatorsPortJpa.searchIndicators(indicatorsFilter);
+        List<Indicators> indicators = searchIndicatorsPortJpa.searchIndicators(indicatorsFilter);
 
-        if (indicators.isPresent()) {
+        if (indicators != null && !indicators.isEmpty()) {
             System.out.println("Indicators found for company: " + ticker);
         } else {
             throw new IndicatorsByCompanyExecption("No indicators found for company: " + ticker);
         }
-        return List.of();
+        return indicators;
     }
 }

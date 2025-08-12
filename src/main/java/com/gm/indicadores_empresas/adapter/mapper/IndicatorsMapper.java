@@ -1,5 +1,6 @@
 package com.gm.indicadores_empresas.adapter.mapper;
 
+import com.gm.indicadores_empresas.adapter.in.dto.IndicatorsDTO;
 import com.gm.indicadores_empresas.adapter.out.jpa.IndicatorsJpaEntity;
 import com.gm.indicadores_empresas.application.domain.Indicators;
 import org.mapstruct.Mapper;
@@ -25,4 +26,22 @@ public interface IndicatorsMapper {
     Indicators toModel(IndicatorsJpaEntity indicatorsJpaEntity);
 
     IndicatorsJpaEntity toEntity(Indicators indicators);
+
+    /**
+     * Map domain Indicators to DTO
+     */
+    @Mappings({
+            @Mapping(source = "quarter",              target = "quarter"),
+            @Mapping(source = "costOfGoodsSold",      target = "costOfGoodsSold"),
+            @Mapping(source = "operatingIncomeExpense", target = "operatingIncomeExpense"),
+            @Mapping(source = "incomeTax",             target = "incomeTax"),
+            @Mapping(source = "consolidatedNetIncome", target = "consolidatedNetIncome"),
+            @Mapping(source = "salesRevenue",          target = "salesRevenue"),
+            @Mapping(source = "ebit",                  target = "ebit"),
+            @Mapping(source = "preTaxIncome",          target = "preTaxIncome"),
+            @Mapping(source = "grossProfit",           target = "grossProfit"),
+            @Mapping(source = "financialResult",       target = "financialResult"),
+            @Mapping(source = "netIncomeOperation",    target = "netIncomeOperation")
+    })
+    IndicatorsDTO toDto(Indicators indicators);
 }

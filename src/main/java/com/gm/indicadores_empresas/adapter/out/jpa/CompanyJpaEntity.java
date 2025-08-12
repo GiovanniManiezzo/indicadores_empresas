@@ -11,15 +11,19 @@ public class CompanyJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "company_id", nullable = false, unique = true)
+    private Long companyId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "cd_cvm", nullable = false, unique = true)
     private Long cd_cvm;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "ticker",nullable = false)
     private String ticker;
 
-    @Column(nullable = false)
+    @Column(name = "sector")
     private String sector;
 
     @Column(nullable = false)
@@ -31,12 +35,12 @@ public class CompanyJpaEntity {
         this.ticker = ticker;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     public Long getCdCvm() {
@@ -45,4 +49,39 @@ public class CompanyJpaEntity {
 
     public String getSector() { return sector; }
 
+    public Long getCd_cvm() {
+        return cd_cvm;
+    }
+
+    public void setCd_cvm(Long cd_cvm) {
+        this.cd_cvm = cd_cvm;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
+
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    public LocalDateTime getHmanut() {
+        return hmanut;
+    }
+
+    public void setHmanut(LocalDateTime hmanut) {
+        this.hmanut = hmanut;
+    }
 }
